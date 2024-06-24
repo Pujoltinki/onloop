@@ -166,7 +166,7 @@
         "categoria": "remeras",
         "marca": "prolockers",
         "imagen": "http://dummyimage.com/200x100.png/5fa2dd/ffffff",
-        "precio": 1500,
+        "precio": 100,
         "stock": 10
     },
     {
@@ -196,7 +196,7 @@
         "categoria": "buzos",
         "marca": "starimport",
         "imagen": "http://dummyimage.com/200x100.png/dddddd/000000",
-        "precio": 1500,
+        "precio": 15,
         "stock": 10
     }
 ]
