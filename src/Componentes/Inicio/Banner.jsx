@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import banner from '../Image/banner.jpg';
+import banner from '../../Image/banner.jpg';
 
 const BannerWrapper = styled.div`
   background-image: url(${banner});

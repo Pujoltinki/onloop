@@ -20,11 +20,11 @@ function Inicio() {
       <Typography variant="h3" component="h3" style={{ marginTop: '20px', color: '#333' }}>
         Marcas
       </Typography>
-      <MarcasInicio></MarcasInicio>
+      <MarcasInicio/>
       <Typography variant="h3" component="h3" style={{ marginTop: '20px', color: '#333' }}>
         Blog
       </Typography>
-      <ForoInicio></ForoInicio>
+      <ForoInicio/>
     </div>
       </Grid>
     </Grid>

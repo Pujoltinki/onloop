@@ -6,7 +6,7 @@ const Footer = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Box mt={5} py={3} bgcolor="#333" color="white" boxShadow={2} textAlign={isSmallScreen ? 'center' : 'center'}>
+    <Box mt={5} py={3} bgcolor="#333" color="white" boxShadow={2} textAlign="center">
       <Typography variant="body2">
         © 2024 OnLoop. All rights reserved.
         {isSmallScreen ? (

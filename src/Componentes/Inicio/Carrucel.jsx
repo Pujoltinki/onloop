@@ -27,12 +27,23 @@ const Carrucel = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/data.json`) // Acceder a data.json en public
+    fetch('/data.json')
       .then(response => response.json())
       .then(data => {
-        // Lógica para seleccionar elementos aleatorios, si es necesario
+        // Mezclar los datos
         const shuffledData = data.sort(() => 0.5 - Math.random());
-        const selectedItems = shuffledData.slice(0, 6); // Limitar a 6 elementos
+        // Seleccionar los primeros 8 elementos únicos
+        const selectedItems = [];
+        const ids = new Set();
+
+        for (let item of shuffledData) {
+          if (selectedItems.length === 8) break;
+          if (!ids.has(item.id)) {
+            selectedItems.push(item);
+            ids.add(item.id);
+          }
+        }
+
         setItems(selectedItems);
       })
       .catch(error => console.error('Error fetching the data:', error));

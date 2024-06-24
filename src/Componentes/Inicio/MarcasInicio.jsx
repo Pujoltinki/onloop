@@ -1,10 +1,10 @@
 import React from 'react';
 import { IconButton, Stack } from '@mui/material';
-import prolockers from '../Image/prolockers.png';
-import milockers from '../Image/milockers.png';
-import prosillas from '../Image/prosillas.png';
-import starimport from '../Image/starimport.png';
-import starpet from '../Image/starpet.png';
+import prolockers from '../../Image/prolockers.png';
+import milockers from  '../../Image/milockers.png';
+import prosillas from  '../../Image/prosillas.png';
+import starimport from '../../Image/starimport.png';
+import starpet from    '../../Image/starpet.png';
 
 const containerStyle = {
     display: 'flex',
