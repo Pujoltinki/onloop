@@ -6,9 +6,10 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Nosotros from './Componentes/Nosotros';
 import Contacto from "./Componentes/Contacto";
 import { CartProvider } from './Context/CardContext';
-import Carrito from './Componentes/Carito';
+import Carrito from './Componentes/Compra/Carito';
 import Inicio from './Componentes/Inicio/Inicio';
 import Footer from './Componentes/Footer';
+import ConfirmacionCompra from './Componentes/Compra/ConfirmacionCompra';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/nosotros" element={<Nosotros />}/>
             <Route path="/contacto" element={<Contacto />}/>
             <Route path="/carrito" element={<Carrito />}/>
+            <Route path="/confirmacion" element={<ConfirmacionCompra/>} />
           </Routes>
           {/* Footer */}
           <Footer></Footer>

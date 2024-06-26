@@ -44,19 +44,17 @@ export const CartProvider = ({children}) => {
             if (producto.cantidad > 1) {
               return { ...producto, cantidad: producto.cantidad - 1 };
             } else {
-              return null; // Eliminar el producto si la cantidad llega a 0
+              return null;
             }
           } else {
-            return producto; // Dejar sin cambios los demás productos
+            return producto;
           }
         });
       
-        // Filtrar los productos eliminados (null) del nuevoCarrito
         const carritoFiltrado = nuevoCarrito.filter((producto) => producto !== null);
-      
+        
         setCarrito(carritoFiltrado);
       };
-
 
     return (
         <CartContext.Provider value={ {

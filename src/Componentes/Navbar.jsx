@@ -14,7 +14,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-import Carito from '../Componentes/Carito';
+import Carito from './Compra/Carito';
 import Onloop from '../Image/onloop.png';
 
 const Nav = styled.nav`
@@ -84,7 +84,7 @@ const Navbar = () => {
         <Button onClick={toggleDrawer(false)} sx={{ color: 'black' }}><CloseIcon /></Button>
       </Grid>
       <Divider />
-      <Carito />
+      <Carito toggleDrawer={toggleDrawer} />
     </Box>
   );
 

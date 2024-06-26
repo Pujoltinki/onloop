@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
+import data from '../../Data/data.json';
 
 const responsive = {
   superLargeDesktop: {
@@ -27,26 +28,19 @@ const Carrucel = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('/data.json')
-      .then(response => response.json())
-      .then(data => {
-        // Mezclar los datos
-        const shuffledData = data.sort(() => 0.5 - Math.random());
-        // Seleccionar los primeros 8 elementos únicos
-        const selectedItems = [];
-        const ids = new Set();
-
-        for (let item of shuffledData) {
-          if (selectedItems.length === 8) break;
-          if (!ids.has(item.id)) {
-            selectedItems.push(item);
-            ids.add(item.id);
-          }
-        }
-
-        setItems(selectedItems);
-      })
-      .catch(error => console.error('Error fetching the data:', error));
+    const shuffledData = data.sort(() => 0.5 - Math.random());
+    const selectedItems = [];
+    const ids = new Set();
+  
+    for (let item of shuffledData) {
+      if (selectedItems.length === 8) break;
+      if (!ids.has(item.id)) {
+        selectedItems.push(item);
+        ids.add(item.id);
+      }
+    }
+  
+    setItems(selectedItems);
   }, []);
 
   return (
@@ -64,7 +58,7 @@ const Carrucel = () => {
         ))}
       </Carousel>
     </div>
-  );
+  );  
 };
 
 export default Carrucel;

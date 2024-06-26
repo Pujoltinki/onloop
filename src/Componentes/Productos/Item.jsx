@@ -15,12 +15,14 @@ const Item = ({ producto }) => {
         alt={`image of ${producto.titulo}`}
         sx={{ height: '10rem', objectFit: 'contain' }}
       />
-      <CardContent>
-        <Typography variant="h6" component="h4" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
-          {producto.titulo}
-        </Typography>
-        <Typography>Precio: ${producto.precio}</Typography>
-        <Typography>Categoría: {toCapital(producto.categoria)}</Typography>
+      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '12rem' }}>
+        <div>
+          <Typography variant="h6" component="h4" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
+            {producto.titulo}
+          </Typography>
+          <Typography>Precio: ${producto.precio}</Typography>
+          <Typography>Categoría: {toCapital(producto.categoria)}</Typography>
+        </div>
         <Button
           component={Link}
           to={`/item/${producto.id}`}
