@@ -72,6 +72,10 @@ const ButtonContainer = styled.div`
 const Carrito = ({ toggleDrawer }) => {
   const { carrito, precioTotal, vaciarCarrito, eliminarProducto } = useContext(CartContext);
 
+  const formatPrice = (price) => {
+    return price.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+  };
+
   const handleEliminarProducto = (idProducto) => {
     eliminarProducto(idProducto);
   };
@@ -83,13 +87,13 @@ const Carrito = ({ toggleDrawer }) => {
           {carrito.map((producto) => (
             <ProductCard key={producto.id}>
               <Title>{producto.titulo}</Title>
-              <p>Precio unit: ${producto.precio}</p>
-              <p>Precio total: ${producto.precio * producto.cantidad}</p>
+              <p>Precio unit: {formatPrice(producto.precio)}</p>
+              <p>Precio total: {formatPrice(producto.precio * producto.cantidad)}</p>
               <p>Cant: {producto.cantidad}</p>
               <Button onClick={() => handleEliminarProducto(producto.id)}>Eliminar</Button>
             </ProductCard>
           ))}
-          <h2>Precio total: ${precioTotal()}</h2>
+          <h2>Precio total: {formatPrice(precioTotal())}</h2>
           <ButtonContainer>
             <Button onClick={vaciarCarrito}>Vaciar carrito</Button>
             <ButtonLink to="/confirmacion">

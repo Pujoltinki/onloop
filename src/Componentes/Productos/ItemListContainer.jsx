@@ -3,7 +3,7 @@ import { pedirDatos } from '../../Helpers/pedirDatos';
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
 import SearchBar from './SearchBar';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Pagination } from '@mui/material';
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
@@ -14,6 +14,9 @@ const ItemListContainer = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const itemsPerPage = 12;
 
   const { categoria } = useParams();
 
@@ -60,6 +63,7 @@ const ItemListContainer = () => {
     }
 
     setFilteredProductos(filteredData);
+    setPage(1); // Reiniciar a la primera página cuando se filtran los productos
   }, [searchText, sortOption, productos, selectedCategory, selectedBrands]);
 
   const handleCategoryChange = (e) => {
@@ -76,6 +80,15 @@ const ItemListContainer = () => {
     );
   };
 
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+
+  const paginatedProductos = filteredProductos.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
   return (
     <Box>
       <SearchBar
@@ -89,10 +102,23 @@ const ItemListContainer = () => {
         selectedCategory={selectedCategory}
         handleCategoryChange={handleCategoryChange}
       />
-      <Typography variant="h4" component="h4" sx={{ fontWeight: 'bold', marginTop: '1rem' }}>{titulo}</Typography>
+      <Typography variant="h4" component="h4" sx={{ fontWeight: 'bold', marginTop: '1rem' }}>
+        {titulo}
+      </Typography>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-        <ItemList productos={filteredProductos} />
+        <ItemList productos={paginatedProductos} />
       </Box>
+      {filteredProductos.length > itemsPerPage && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+          <Pagination
+            count={Math.ceil(filteredProductos.length / itemsPerPage)}
+            page={page}
+            onChange={handleChangePage}
+            variant="outlined"
+            color="primary"
+          />
+        </Box>
+      )}
     </Box>
   );
 };

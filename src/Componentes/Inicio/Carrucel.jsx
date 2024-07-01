@@ -27,6 +27,10 @@ const responsive = {
 const Carrucel = () => {
   const [items, setItems] = useState([]);
 
+  const formatPrice = (price) => {
+    return price.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+  };
+
   useEffect(() => {
     const shuffledData = data.sort(() => 0.5 - Math.random());
     const selectedItems = [];
@@ -50,7 +54,7 @@ const Carrucel = () => {
           <div key={item.id} style={{ padding: '10px' }}>
             <img src={item.imagen} alt={item.titulo} style={{ width: '100%', height: 'auto' }} />
             <p style={{ textAlign: 'center' }}>{item.titulo}</p>
-            <p style={{ textAlign: 'center' }}>${item.precio}</p>
+            <p style={{ textAlign: 'center' }}>{formatPrice(item.precio)}</p>
             <div style={{ textAlign: 'center' }}>
               <Link className="ver-mas" to={`/item/${item.id}`}>Ver más</Link>
             </div>

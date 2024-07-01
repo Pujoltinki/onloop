@@ -25,7 +25,9 @@ function Inicio() {
           </Typography>
           <MarcasInicio />
           <Typography variant="h3" component="h3" style={{ marginTop: '20px', color: '#333' }}>
-            Blog
+          <Link to="/blog" style={{ textDecoration: 'none', color: 'inherit' }}>
+              Blog
+            </Link>
           </Typography>
           <ForoInicio />
         </div>

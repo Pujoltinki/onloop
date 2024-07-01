@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nombre": "Juan Perez",
+        "contrasena": "123",
+        "correo": "juan.perez@example.com"
+    },
+    {
+        "id": 2,
+        "nombre": "Maria Gomez",
+        "contrasena": "123",
+        "correo": "maria.gomez@example.com"
+    },
+    {
+        "id": 3,
+        "nombre": "Carlos Ramirez",
+        "contrasena": "123",
+        "correo": "carlos.ramirez@example.com"
+    }
+]

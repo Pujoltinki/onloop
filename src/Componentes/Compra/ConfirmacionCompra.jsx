@@ -1,4 +1,3 @@
-// ConfirmacionCompra.jsx
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../Context/CardContext';
 import Box from '@mui/material/Box';
@@ -7,12 +6,11 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
 import ConfirmarProductos from './ConfirmarProductos';
 import DatosEntrega from './DatosEntrega';
 import Resumen from './Resumen';
-
-// Importa los datos de las comunas
+import SeleccionMedioPago from './SeleccionMedioPago'; // Importa el nuevo componente
+import mediosPago from '../../Data/medios_pago.json';
 import comunas from '../../Data/comuma.json';
 
 const steps = ['Confirmar productos', 'Datos de entrega', 'Resumen'];
@@ -30,6 +28,7 @@ const ConfirmacionCompra = () => {
     const [telefono, setTelefono] = useState('');
     const [calcularHabilitado, setCalcularHabilitado] = useState(false);
     const [precioVisible, setPrecioVisible] = useState(false);
+    const [medioPago, setMedioPago] = useState('');
 
     const totalSteps = () => steps.length;
 
@@ -69,8 +68,8 @@ const ConfirmacionCompra = () => {
         const comunaSeleccionada = comunas.find(comuna => comuna.nombre === event.target.value);
         setSelectedComuna(event.target.value);
         setComunaPrecio(comunaSeleccionada ? comunaSeleccionada.precio : null);
-        setPrecioVisible(false); // Ocultar el precio hasta que se presione "Calcular"
-        setCalcularHabilitado(false); // Deshabilitar el botón "Next"
+        setPrecioVisible(false);
+        setCalcularHabilitado(false);
     };
 
     const handleDireccionChange = (event) => {
@@ -93,6 +92,10 @@ const ConfirmacionCompra = () => {
         setTelefono(event.target.value);
     };
 
+    const handleMedioPagoChange = (event) => {
+        setMedioPago(event.target.value);
+    };
+
     const handleCalcular = () => {
         if (selectedComuna && direccion && correo && nombre && rut && telefono) {
             setCalcularHabilitado(true);
@@ -111,15 +114,12 @@ const ConfirmacionCompra = () => {
             </Stepper>
             <div>
                 {allStepsCompleted() ? (
-                    <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>
-                            <h2>Datos confirmados ir a medios de pago</h2>
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                            <Box sx={{ flex: '1 1 auto' }} />
-                            <Button onClick={handleReset}>Pagar</Button>
-                        </Box>
-                    </React.Fragment>
+                    <SeleccionMedioPago
+                        medioPago={medioPago}
+                        mediosPago={mediosPago}
+                        handleMedioPagoChange={handleMedioPagoChange}
+                        handleReset={handleReset}
+                    />
                 ) : (
                     <React.Fragment>
                         <Typography sx={{ mt: 2, mb: 1, py: 1 }}></Typography>
@@ -172,13 +172,16 @@ const ConfirmacionCompra = () => {
                                 onClick={handleBack}
                                 sx={{ mr: 1 }}
                             >
-                                Atras
+                                Atrás
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
                             <Button
                                 onClick={handleNext}
                                 sx={{ mr: 1 }}
-                                disabled={(activeStep === 1 && !calcularHabilitado) || (activeStep === 0 && carrito.length === 0)}
+                                disabled={
+                                    (activeStep === 1 && !calcularHabilitado) ||
+                                    (activeStep === 0 && carrito.length === 0)
+                                }
                             >
                                 Siguiente
                             </Button>
